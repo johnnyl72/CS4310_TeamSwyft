@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
         err_n_die("write error");
 
     // Read server's response
-    while( (n = read(sockfd, recvline, MAXLINE-1)) > 0){ // read socket
+    while ((n = read(sockfd, recvline, MAXLINE-1)) > 0){ // read socket
         printf("%s", recvline); // will render this html to show web pages later, for now we will just show html
         memset(recvline, 0, MAXLINE); // zero out each time
     }
