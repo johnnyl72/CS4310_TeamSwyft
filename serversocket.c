@@ -30,13 +30,16 @@ int main(int argc, char **argv){
     for (;;){
         struct sockaddr_in addr;
         socklen_t addr_len;
-
+        char client_address[MAXLINE+1];
         // accept blocks until an incoming connection arrives
         // it returns a "file descriptor" to the connection
         printf("Waiting for a connection on port %d\n", SERVER_PORT);
         fflush(stdout);
         // connfd is another socket that we use to talk to the connected client
-        connfd = accept(listenfd, (SA *) NULL, NULL); // pass into listening file descriptor, Both null to accept any connections
+        connfd = accept(listenfd, (SA *) &addr, &addr_len); // pass into listening file descriptor, Both null to accept any connections
+
+        inet_ntop(AF_INET, &addr, client_address, MAXLINE); // network to presentation format, since address will be a struct (network type) full of binary data
+        printf("Client connection: %s\n", client_address);
 
         // zero out the receive buffer to make sure it ends up null- terminated
         memset(recvline, 0, MAXLINE);
