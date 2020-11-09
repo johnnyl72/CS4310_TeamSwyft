@@ -17,7 +17,7 @@
 #include <netdb.h>
 
 // useful constants
-#define SERVER_PORT 1800 // We pick 1800 because 
+#define SERVER_PORT 18000 // We pick 18000 because 
 
 #define MAXLINE 4096
 #define SA struct sockaddr

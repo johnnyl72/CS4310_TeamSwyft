@@ -13,7 +13,7 @@
 #include <sys/ioctl.h>
 #include <netdb.h>
 
-#define SERVER_PORT 80
+#define SERVER_PORT 18000
 
 #define MAXLINE 4096
 #define SA struct sockaddr
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
         err_n_die("Error while creating the socket!");
 
-    bzero(&servaddr, sizeof(servaddr)); // zero out the address
+    memset(&servaddr, '0', sizeof(servaddr)); // zero out the address
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(SERVER_PORT); // host to network, short - convert to network standard byte order to ensure two different computers of different byte orders
 
