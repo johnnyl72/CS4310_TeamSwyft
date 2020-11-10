@@ -1,3 +1,4 @@
+#include "common.h"
 #include <sys/socket.h> // for socket definition
 #include <sys/types.h>
 #include <signal.h>
@@ -13,12 +14,12 @@
 #include <sys/ioctl.h>
 #include <netdb.h>
 
-#define SERVER_PORT 18000
-
+#define SERVER_PORT 1234 // We pick 18000 because 
 #define MAXLINE 4096
 #define SA struct sockaddr
 
 void err_n_die(const char *fmt, ...);
+char *bin2hex(const unsigned char *input, size_t len);
 
 int main(int argc, char **argv) {
 
@@ -95,4 +96,25 @@ void err_n_die(const char *fmt, ...){
 
     // terminate with error
     exit(1);
+}
+
+char *bin2hex(const unsigned char *input, size_t len){
+    char *result;
+    char *hexits = "0123456789ABCDEF";
+
+    if (input == NULL || len <= 0)
+        return NULL;   
+
+    //(2 hexits+space)/char + NULL
+    int resultlength = (len*3)+1;
+
+    result = malloc(resultlength);
+    bzero(result, resultlength);
+    for(int i = 0; i < len; i++){
+        result[i*3] = hexits[input[i] >> 4];
+        result[(i*3)+1] = hexits[input[i] & 0X0F];
+        result[(i*3)+2] = ' '; // for readability
+    }
+
+    return result;
 }
