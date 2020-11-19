@@ -116,6 +116,9 @@ void * process(void* p_connect_socket){
                 write(connect_socket, "HTTP/1.1 400 Bad Request\r\n", 26);
             }
         }
+        else if(strncmp(req_head_tokens[0], "POST", sizeof(req_head_tokens[0])) == 0){
+            // Some function
+        }
     }
     // if(fork() != 0){
         close(connect_socket);
