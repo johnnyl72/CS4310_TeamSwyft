@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 /* ----------------------------------------------- */
 /* BASIC SETUP */
 /* ----------------------------------------------- */
@@ -12,9 +13,10 @@
 html,
 body {
 	background-color: #fff;
-	font-family: 'Lucida Console', Courier, monospace;
+	font-family: 'Orbitron';
 	font-weight: 300;
 	font-size: 0.4rem;
+	letter-spacing: 0.2rem;
 	text-rendering: optimizeLegibility;
 	overflow-x: hidden;
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -57,7 +59,6 @@ p {
 	flex-direction: column;
 	margin-top: 10rem;
 	color: white;
-	font-family: 'Lucida Console', Courier, monospace;
 }
 
 .button-container {
@@ -94,7 +95,6 @@ a.buttona1 {
 	height: 75%;
 	border-radius: 2.5rem;
 	color: white;
-	font-family: 'Lucida Console', Courier, monospace;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -113,7 +113,6 @@ a.buttona2 {
 	height: 75%;
 	border-radius: 2.5rem;
 	color: white;
-	font-family: 'Lucida Console', Courier, monospace;
 	display: flex;
 	align-items: center;
 	justify-content: center;
