@@ -1,0 +1,121 @@
+/* ----------------------------------------------- */
+/* BASIC SETUP */
+/* ----------------------------------------------- */
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	background-color: #fff;
+	font-family: 'Lucida Console', Courier, monospace;
+	font-weight: 300;
+	font-size: 0.4rem;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	content: '.';
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+body {
+	background-image: url('background.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100vh;
+	background-attachment: fixed;
+	z-index: 1;
+}
+
+h1 {
+	font-size: 10rem;
+}
+p {
+	font-size: 4rem;
+}
+
+.fluid-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 10rem;
+	color: white;
+	font-family: 'Lucida Console', Courier, monospace;
+}
+
+.button-container {
+	width: 80%;
+	height: 70vh;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+}
+
+.buttona1:hover {
+	filter: drop-shadow(10px 10px 10px rgb(67, 255, 10)) contrast(110%);
+}
+
+.buttona2:hover {
+	filter: drop-shadow(10px 10px 10px rgb(2, 121, 226)) contrast(110%);
+}
+
+*:focus {
+	outline: none;
+}
+
+a.buttona1 {
+	-webkit-appearance: button;
+	-moz-appearance: button;
+	appearance: button;
+	text-decoration: none;
+	color: initial;
+	background-image: url('https://cdn.discordapp.com/attachments/705658188565053462/778884503132438548/unknown.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 45%;
+	height: 75%;
+	border-radius: 2.5rem;
+	color: white;
+	font-family: 'Lucida Console', Courier, monospace;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 7rem;
+}
+a.buttona2 {
+	-webkit-appearance: button;
+	-moz-appearance: button;
+	appearance: button;
+	text-decoration: none;
+	color: initial;
+	background-image: url('https://cdn.discordapp.com/attachments/705658188565053462/778883849202434049/unknown.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 45%;
+	height: 75%;
+	border-radius: 2.5rem;
+	color: white;
+	font-family: 'Lucida Console', Courier, monospace;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 7rem;
+}
