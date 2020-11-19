@@ -27,7 +27,7 @@ int main(int argc, char **argv){
         perror("Socket Creation Failed!");
         exit(1);
     }
-    printf("PRINT SOCKET IS: %d", listen_socket);
+    // printf("PRINT SOCKET IS: %d", listen_socket);
     // Setting up the address that will be used for listening (accepting connections)
     memset((char *) &server_address, '\0', sizeof(server_address)); // Zero out server_address first
     server_address.sin_family = AF_INET; 
@@ -42,7 +42,7 @@ int main(int argc, char **argv){
         exit(1);
     }
     // Queue of 2 to connect, any more will throw error
-    if ( (listen(listen_socket, 2)) < 0 ){
+    if ( (listen(listen_socket, 10)) < 0 ){
         perror("Listen Error!");
         exit(1);
     }
@@ -68,9 +68,9 @@ int main(int argc, char **argv){
 
         // Process client's message
         pthread_t thread;
-        // process(connect_socket);
         pthread_create(&thread, NULL, process, &connect_socket);
         pthread_join(thread, NULL);
+
     }
     return 0;
 }
@@ -99,14 +99,17 @@ void * process(void* p_connect_socket){
                 strcpy(&path[strlen(ROOT)], req_head_tokens[1]);
                 printf("Request file: %s\n", path);
                 //O_RDONLY = READ ONLY
-                if( (write_fd = open(path, O_RDONLY)) > 0 ){
-                    send(connect_socket, "HTTP/1.1 200 OK\r\n\r\n", 19, 0);
-                    while( (message_size=read(write_fd, msg_resp, MAX_BUFF_SIZE)) > 0 ){
-                        write(connect_socket, msg_resp, message_size);
+                
+                if(fork() == 0){
+                    if( (write_fd = open(path, O_RDONLY)) > 0 ){
+                        send(connect_socket, "HTTP/1.1 200 OK\r\n\r\n", 19, 0);
+                        while( (message_size=read(write_fd, msg_resp, sizeof(msg_resp))) > 0 ){
+                            write(connect_socket, msg_resp, message_size);
+                        }
                     }
-                }
-                else{
-                    write(connect_socket, "HTTP/1.1 404 Not Found\r\n", 24);
+                    else{
+                        write(connect_socket, "HTTP/1.1 404 Not Found\r\n", 24);
+                    }
                 }
             }
             else{
@@ -114,9 +117,10 @@ void * process(void* p_connect_socket){
             }
         }
     }
-
-    close(connect_socket);
-    printf("End of connection\n----------------------------------------------------------------------------------\n");
+    // if(fork() != 0){
+        close(connect_socket);
+        printf("End of connection\n----------------------------------------------------------------------------------\n");
+    // }
 
     // return NULL;
 }
