@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* ----------------------------------------------- */
+/* BASIC SETUP */
+/* ----------------------------------------------- */
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	background-color: #fff;
+	font-family: Roboto;
+	font-weight: 300;
+	font-size: 1.2rem;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	content: '.';
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+body {
+	background-image: url(img/forest.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100vh;
+	background-attachment: fixed;
+	z-index: 1;
+}
+
+/* ----------------------------------------------- */
+/* MONSTER DESCRIPTION*/
+/* ----------------------------------------------- */
+.description_column {
+	float: left;
+	font-size: 120%;
+	color: #ebe70b;
+	text-transform: uppercase;
+	word-spacing: 2px;
+	margin-top: 15vh;
+	margin-left: 10vh;
+	letter-spacing: 5px;
+}
+
+/* ----------------------------------------------- */
+/* MONSTER UPDATE*/
+/* ----------------------------------------------- */
+.update_column {
+	float: right;
+	font-size: 120%;
+	text-transform: uppercase;
+	word-spacing: 2px;
+	margin-top: 15vh;
+	margin-right: 10vh;
+	letter-spacing: 2px;
+}
+
+/* Tooltip container */
+.exp_tool_tip {
+	position: relative;
+	display: inline-block;
+}
+
+/* Tooltip text */
+.exp_tool_tip .exp_tool_tip_text {
+	visibility: hidden;
+	width: 30vh;
+	color: #fff;
+	text-align: center;
+	font-size: 0.6rem;
+
+	/* Position the exp_tool_tip text */
+	position: absolute;
+	z-index: 1;
+	margin-top: 5vh;
+	margin-right: 10vh;
+
+	/* Fade in exp_tool_tip */
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+/* Show the exp_tool_tip text when you mouse over the exp_tool_tip container */
+.exp_tool_tip:hover .exp_tool_tip_text {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* ----------------------------------------------- */
+/* BUTTON */
+/* ----------------------------------------------- */
+
+button {
+	background: linear-gradient(to bottom, rgba(0, 255, 60, 0.682), #00aaffce);
+	border: none;
+	border-radius: 10px;
+	color: rgb(0, 0, 0);
+	margin: 20px 20px;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	width: 60%;
+	font-size: 1.2rem;
+}
+
+button:hover {
+	background-color: #e7e7e7;
+}
+
+button:active {
+	background-color: #ececec;
+}
+
+/* ----------------------------------------------- */
+/* MONSTER  */
+/* ----------------------------------------------- */
+
+.monster_colmun {
+	text-align: center;
+}
+
+#slime {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: local;
+	margin-top: 40vh;
+	margin-left: 20vh;
+	height: 30vh;
+	width: 30vh;
+}
+
+#monster_name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 140%;
+	color: #ffdd00;
+	text-transform: uppercase;
+	word-spacing: 2px;
+	letter-spacing: 5px;
+}
+.evolve_text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 140%;
+	color: #ff9d00;
+	text-transform: uppercase;
+	word-spacing: 2px;
+	letter-spacing: 5px;
+}
+
+.button_evolve {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.monster_evolve {
+	background: linear-gradient(to bottom, rgba(0, 255, 60, 0.682), #00aaffce);
+	border: none;
+	border-radius: 10px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.2rem;
+	letter-spacing: 2px;
+	width: 15%;
+}
