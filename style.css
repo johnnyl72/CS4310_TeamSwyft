@@ -57,7 +57,7 @@ p {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	margin-top: 10rem;
+	margin-top: 11rem;
 	color: white;
 }
 
@@ -117,4 +117,38 @@ a.buttona2 {
 	align-items: center;
 	justify-content: center;
 	font-size: 7rem;
+}
+
+label, input{
+	padding: .7rem;
+	display: inline-block;
+}
+label{
+	color: white;
+	margin-top: 3rem;
+}
+
+a.buttona3 {
+	-webkit-appearance: button;
+	-moz-appearance: button;
+	appearance: button;
+	text-decoration: none;
+	color: initial;
+	background-image: url('https://i.pinimg.com/originals/d1/b8/05/d1b80529ebbaf0f5e3272ceda356ee5b.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 30rem;
+	height: 7rem;
+	border-radius: 2.2rem;
+	color: white;
+	font-size: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.subBtn{
+	color: black; margin: 2rem; padding: 1.2rem;
+	border-radius: 2.5rem;
+	text-decoration: none;
 }
