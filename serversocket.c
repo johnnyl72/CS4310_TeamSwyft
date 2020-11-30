@@ -158,7 +158,8 @@ void *process(void *p_connect_socket)
 			strcpy(path,ROOT);
 			strcpy(&path[strlen(ROOT)], "/reviews.txt");
 			printf("\nAppend file: %s\n", path);
-			// BUG: Due how to the design of our program, sometimes it prints twice
+
+			// Open and apend to file		
 			FILE * fpointer = fopen("reviews.txt", "a+");
 			fprintf(fpointer, "\n");
 			fprintf(fpointer, text[1]);
@@ -170,6 +171,10 @@ void *process(void *p_connect_socket)
 			fprintf(fpointer, "\n");
 			fprintf(fpointer, "\n");
 			fclose(fpointer);
+
+			// Redirect to home page after successful post request
+			char postresp[] = "HTTP/1.1 301 Moved Permanently\nLocation: index.html\nContent-Type: text/html; charset=UTF-8\nContent-Length: 134\n\n!";
+			send(connect_socket, postresp, sizeof(postresp), 0);
 			
 		}
 	}
