@@ -16,7 +16,7 @@
 #define MAX_BUFF_SIZE 4096
 
 void *process(void *connect_socket);
-
+char* replace_char(char* str, char find, char replace);
 int main(int argc, char **argv)
 {
 
@@ -131,13 +131,63 @@ void *process(void *p_connect_socket)
 		}
 		else if (strncmp(req_head_tokens[0], "POST", sizeof(req_head_tokens[0])) == 0)
 		{
-			// Some function
+
+			// Parses the POST request body data but only does the basic characters not ASCII Encoding Reference i.e. '%' is %25 or ' ' is %20 
+			// https://www.w3schools.com/tags/ref_urlencode.ASP
+			char *pch;
+			char *resp[4];
+			pch = strtok(NULL, " \r\n");
+			char lastLine[1024];
+			while ( pch != NULL){
+				strcpy(lastLine, pch);
+				pch = strtok(NULL, " \r\n");
+			}
+			printf("%s", lastLine);
+			resp[0] = strtok(lastLine, "=");
+			resp[1] = strtok(NULL, "&");
+			resp[2] = strtok(NULL, "=");
+			resp[3] = strtok(NULL, "\n");
+			
+			char *text[2];
+			text[1] = replace_char(resp[1], '+', ' ');
+			printf("\nName: %s", text[1]);
+			text[2] = replace_char(resp[3], '+', ' ');
+			printf("\nComment: %s", resp[3]);
+			// printf("\nComment: %s\n", resp[1]);
+
+			// BUG: Due how to the design of our program, sometimes it prints twice
+			
+			strcpy(path, ROOT);
+			strcpy(&path[strlen(ROOT)], "/reviews.txt");
+			printf("\nAppended to: %s\n", path);
+
+			FILE * fpointer = fopen(path, "a+");
+			fprintf(fpointer, text[1]);
+			fprintf(fpointer, "\n");
+			fprintf(fpointer, text[2]);
+			fprintf(fpointer, "\n");
+			fprintf(fpointer, "-------------------------------------------------------");
+			fprintf(fpointer, "\n");
+			fclose(fpointer);
+
+			// https://en.wikipedia.org/wiki/HTTP_301
+			char postresp[] = "HTTP/1.1 301 Moved Permanently\nLocation: index.html\nContent-Type: text/html; charset=UTF-8\nContent-Length: 134\n\n!";
+			send(connect_socket, postresp, sizeof(postresp), 0);
 		}
 	}
 	// if(fork() != 0){
 	close(connect_socket);
-	printf("End of connection\n----------------------------------------------------------------------------------\n");
+	printf("\nEnd of connection\n----------------------------------------------------------------------------------\n");
 	// }
 
 	// return NULL;
+}
+
+char* replace_char(char* str, char find, char replace){
+    char *current_pos = strchr(str,find);
+    while (current_pos){
+        *current_pos = replace;
+        current_pos = strchr(current_pos,find);
+    }
+    return str;
 }
