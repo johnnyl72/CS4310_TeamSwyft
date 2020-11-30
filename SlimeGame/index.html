@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="interface.css" />
+
+		<audio autoplay loop preload="auto">
+			<source src="music/maplestorybgm.ogg" type="audio/ogg" />
+			<p>Your browser does not support the audio element.</p>
+		</audio>
+	</head>
+	<body>
+		<header>
+			<div class="row">
+				<div class="description_column">
+					Experience: <span class="experience"></span>
+					<span style="display: none" class="show_monster_level"
+						>Monster Level: <span class="monster_level"></span
+					></span>
+					<span style="display: none" class="show_feeder"
+						>Feeders: <span class="feeder"></span
+					></span>
+					<span style="display: none" class="show_feeder_level"
+						>Feeders Level: <span class="feeder_level"></span
+					></span>
+				</div>
+
+				<div class="update_column">
+					<div class="exp_tool_tip">
+						<button onClick="gainExp(1)">
+							☝️Gain Experience Points
+						</button>
+						<span class="exp_tool_tip_text"
+							>Gain exp to level up monster, hire feeders, and
+							evolve monster.</span
+						>
+					</div>
+					<div>
+						<button
+							style="display: none"
+							class="show_monster_level"
+							onClick="levelUpMonster(1)"
+						>
+							🆙Level up monster:
+							<span class="monster_level_cost"></span> EXP
+						</button>
+					</div>
+
+					<button
+						style="display: none"
+						class="show_feeder"
+						onClick="hireFeeder(1)"
+					>
+						🤝Hire Feeders: <span class="feeder_cost"></span> EXP
+					</button>
+					<button
+						style="display: none"
+						class="show_feeder"
+						onClick="levelUpFeeder(1)"
+					>
+						🆙Level up Feeders:
+						<span class="feeder_level_cost"></span> EXP
+					</button>
+				</div>
+
+				<div class="monster_column">
+					<div class="evolve_text">
+						<span style="display: none" class="show_evolve_level"
+							>Evolve Every 10 Levels
+							<span class="evolve_level"></span
+						></span>
+					</div>
+					<div id="monster_name"></div>
+
+					<div class="monster_image">
+						<div><img id="slime" src="./img/slime.gif" /></div>
+					</div>
+					<div class="button_evolve">
+						<button
+							class="monster_evolve"
+							onClick="evolveMonster()"
+						>
+							🔄Evolve Monster
+						</button>
+					</div>
+				</div>
+			</div>
+		</header>
+	</body>
+	<script>
+		var audio = document.getElementById("music/maplestorybgm.og");
+		audio.volume = 0.1;
+	</script>
+	<script type="text/javascript" src="main.js"></script>
+</html>
