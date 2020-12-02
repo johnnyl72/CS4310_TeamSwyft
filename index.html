@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+	<script>
+		var audio = document.getElementById("menu.ogg");
+		audio.volume = 0.1;
+	</script>
 	<head>
 		<title>Swyft Games</title>
 		<meta charset="utf-8" />
@@ -37,7 +41,8 @@
 			<label for="name">Name</label><br>
 			<input type='text' name='name' id='name' placeholder="John Smith" autocomplete="off"/><br /> 
 		   
-			<label for="Comment">Comment</label><br>	
+
+			<label for="Comment">Comment</label><br>
 			<textarea class="form-control" rows="6" name='comment' id='comment' style="display:inline-block; max-width: 90rem; text-align: left;" autocomplete="off"></textarea><br /> 
 		   
 			<input type='submit' value='Submit' class="subBtn"/>   
@@ -47,8 +52,4 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script>
-		var audio = document.getElementById("menu.ogg");
-		audio.volume = 0.1;
-	</script>
 </html>
