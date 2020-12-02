@@ -9,8 +9,8 @@
 
 #include <limits.h>	   // Path limit
 #include <sys/types.h> // open, recv
-#include <sys/stat.h>  //open
-#include <fcntl.h>	   //open
+#include <sys/stat.h>  // open
+#include <fcntl.h>	   // open
 
 #define SERVER_PORT 1234
 #define MAX_BUFF_SIZE 4096
@@ -28,7 +28,6 @@ int main(int argc, char **argv)
 		perror("Socket Creation Failed!");
 		exit(1);
 	}
-	// printf("PRINT SOCKET IS: %d", listen_socket);
 	// Setting up the address that will be used for listening (accepting connections)
 	memset((char *)&server_address, '\0', sizeof(server_address)); // Zero out server_address first
 	server_address.sin_family = AF_INET;
@@ -43,7 +42,7 @@ int main(int argc, char **argv)
 		perror("Binding Error!");
 		exit(1);
 	}
-	// Queue of 2 to connect, any more will throw error
+	// Queue of 10 to connect, any more will throw error
 	if ((listen(listen_socket, 10)) < 0)
 	{
 		perror("Listen Error!");
@@ -69,7 +68,7 @@ int main(int argc, char **argv)
 
 		// Print the client's ip address
 		inet_ntop(AF_INET, &client_address, client_ip, MAX_BUFF_SIZE); // Network to presentation format (ntop) due to client_address being a struct (network type) full of binary data
-		printf("Client's IP address: %s\n", client_ip);				   // Bug here on first connection
+		printf("Client's IP address: %s\n", client_ip);				   
 
 		// Process client's message
 		pthread_t thread;
@@ -106,10 +105,10 @@ void *process(void *p_connect_socket)
 				strcpy(path, ROOT);
 				strcpy(&path[strlen(ROOT)], req_head_tokens[1]);
 				printf("Request file: %s\n", path);
-				//O_RDONLY = READ ONLY
 
 				if (fork() == 0)
 				{
+				//O_RDONLY = READ ONLY
 					if ((write_fd = open(path, O_RDONLY)) > 0)
 					{
 						send(connect_socket, "HTTP/1.1 200 OK\r\n\r\n", 19, 0);
@@ -155,8 +154,8 @@ void *process(void *p_connect_socket)
 			printf("\nComment: %s", resp[3]);
 			// printf("\nComment: %s\n", resp[1]);
 
-			// BUG: Due how to the design of our program, sometimes it prints twice
-
+			// BUG: Sometimes it prints twice
+			
 			strcpy(path, ROOT);
 			strcpy(&path[strlen(ROOT)], "/reviews.txt");
 			printf("\nAppended to: %s\n", path);
@@ -170,15 +169,13 @@ void *process(void *p_connect_socket)
 			fprintf(fpointer, "\n");
 			fclose(fpointer);
 
-			// https://en.wikipedia.org/wiki/HTTP_301
+			// https://en.wikipedia.org/wiki/HTTP_301 on how to redirect after POST 
 			char postresp[] = "HTTP/1.1 301 Moved Permanently\nLocation: index.html\nContent-Type: text/html; charset=UTF-8\nContent-Length: 134\n\n!";
 			send(connect_socket, postresp, sizeof(postresp), 0);
 		}
 	}
-	// if(fork() != 0){
 	close(connect_socket);
 	printf("\nEnd of connection\n----------------------------------------------------------------------------------\n");
-	// }
 
 	// return NULL;
 }
