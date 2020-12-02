@@ -132,7 +132,7 @@ void *process(void *p_connect_socket)
 		else if (strncmp(req_head_tokens[0], "POST", sizeof(req_head_tokens[0])) == 0)
 		{
 
-			// Parses the POST request body data but only does the basic characters not ASCII Encoding Reference i.e. '%' is %25 or ' ' is %20 
+			// Parses the POST request body data but only does the basic characters not ASCII Encoding Reference i.e. '%' is %25 or ' ' is %20
 			// https://www.w3schools.com/tags/ref_urlencode.ASP
 			char *pch;
 			char *resp[4];
@@ -147,7 +147,7 @@ void *process(void *p_connect_socket)
 			resp[1] = strtok(NULL, "&");
 			resp[2] = strtok(NULL, "=");
 			resp[3] = strtok(NULL, "\n");
-			
+
 			char *text[2];
 			text[1] = replace_char(resp[1], '+', ' ');
 			printf("\nName: %s", text[1]);
@@ -156,7 +156,7 @@ void *process(void *p_connect_socket)
 			// printf("\nComment: %s\n", resp[1]);
 
 			// BUG: Due how to the design of our program, sometimes it prints twice
-			
+
 			strcpy(path, ROOT);
 			strcpy(&path[strlen(ROOT)], "/reviews.txt");
 			printf("\nAppended to: %s\n", path);
