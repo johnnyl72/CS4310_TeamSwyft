@@ -161,9 +161,9 @@ void *process(void *p_connect_socket)
 			printf("\nAppended to: %s\n", path);
 
 			FILE * fpointer = fopen(path, "a+");
-			fprintf(fpointer, text[1]);
+			fprintf(fpointer, "%s", text[1]);
 			fprintf(fpointer, "\n");
-			fprintf(fpointer, text[2]);
+			fprintf(fpointer, "%s", text[2]);
 			fprintf(fpointer, "\n");
 			fprintf(fpointer, "-------------------------------------------------------");
 			fprintf(fpointer, "\n");
